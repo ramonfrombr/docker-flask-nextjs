@@ -1,4 +1,26 @@
 services:
+  # flask service
+  flaskapp:
+    container_name: flask_app
+    image: flaskapp:1.0.0
+    build:
+      context: ./backend
+      dockerfile: flask.dockerfile
+    develop:
+      watch:
+        - path: ./backend
+          action: sync
+          target: ./app
+    ports:
+      - 4000:4000
+    environment:
+      - DATABASE_URL=postgresql://postgres:postgres@db:5432/postgres
+      - FLASK_DEBUG=1
+      - FLASK_ENV=development
+    depends_on:
+      - db
+
+  # db service
   db:
     container_name: db
     image: postgres:13

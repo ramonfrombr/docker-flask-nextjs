@@ -3,5 +3,6 @@ services:
     name: nextapp
     runtime: docker
     dockerfilePath: ./frontend/next.dockerfile
-    - key: PORT
-      value: 3000
+    envVars:
+      - key: PORT
+        value: 3000

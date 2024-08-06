@@ -1,0 +1,7 @@
+services:
+  - type: web
+    name: nextapp
+    runtime: docker
+    dockerfilePath: ./frontend/next.dockerfile
+    - key: PORT
+      value: 3000
